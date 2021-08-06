@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaCheckCircle } from "react-icons/fa";
 import { IAttack } from '../../types';
 
 interface IProps {
