@@ -23,6 +23,9 @@ const App = () => {
           setPointer,
         }}
       >
+        <div className="bg-purple-600 hover:bg-purple-700 hidden"></div>
+        <div className="bg-green-600 hover:bg-green-700 hidden"></div>
+        <div className="bg-gray-800 hover:bg-gray-900 hidden"></div>
         <div className="flex flex-col bg-gray-100 items-center w-full h-full fixed overflow-y-auto">
           <Switch>
             <Route exact path="/">
