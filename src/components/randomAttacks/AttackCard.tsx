@@ -1,11 +1,6 @@
 import React from 'react';
 import { FaCheckCircle } from "react-icons/fa";
-import { IGroup } from '../../App';
-
-export interface IAttack {
-  id: number;
-  title: string;
-}
+import { IGroup, IAttack } from '../../types';
 
 interface IProps {
   attack: IAttack;
@@ -32,7 +27,7 @@ const AttackCard: React.FC<IProps> = ({ attack, active, setActive, activeGroup }
       ) : null}
 
       <img className="h-48 my-5 self-center" src={imgSrc} alt={attack.title} />
-      <div className="font-medium text-center p-3 self-center text-gray-900">{attack.id}. {attack.title}</div>
+      <div className="font-medium text-center p-3 self-center text-gray-900 flex-grow">{attack.id}. {attack.title}</div>
     </button>
   )
 }
