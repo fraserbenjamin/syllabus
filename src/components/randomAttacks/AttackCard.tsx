@@ -19,14 +19,9 @@ const AttackCard: React.FC<IProps> = ({ attack, active, setActive, activeGroup }
 
   return (
     <button
-      className={`shadow-xl rounded-lg m-3 flex flex-col justify-between bg-white hover:bg-gray-50 relative overflow-hidden cursor-pointer border-2 ${active ? "border-" + activeGroup.baseColour : "border-white hover:border-gray-50"}`}
+      className={`shadow rounded-lg m-3 flex flex-col justify-between bg-white hover:bg-gray-50 transition-colors duration-200 relative overflow-hidden cursor-pointer border-2 ${active ? "border-" + activeGroup.baseColour : "border-white hover:border-gray-50"}`}
       onClick={() => setActive(!active)}
     >
-
-      {/* <div className="w-11 overflow-hidden inline-block">
-        <div className=" h-16 bg-blue-500 -rotate-45 transform origin-top-left"></div>
-      </div> */}
-
       {active ? (
         <>
           <div className="absolute z-10 top-2 right-2">
@@ -37,7 +32,7 @@ const AttackCard: React.FC<IProps> = ({ attack, active, setActive, activeGroup }
       ) : null}
 
       <img className="h-48 my-5 self-center" src={imgSrc} alt={attack.title} />
-      <div className="font-medium text-center p-3 self-center text-gray-900">{attack.title}</div>
+      <div className="font-medium text-center p-3 self-center text-gray-900">{attack.id}. {attack.title}</div>
     </button>
   )
 }
