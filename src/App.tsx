@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Firebase from './components/Firebase';
 
 import AppContext from './context/appContext';
 
@@ -14,6 +15,7 @@ const renderLoader = () => null;
 
 const App = () => {
   const [timeline, setTimeline] = useState<number[]>([]);
+  const [cookiesEnabled, setCookiesEnabled] = useState<boolean>(false);
 
   return (
     <Router>
@@ -21,8 +23,11 @@ const App = () => {
         value={{
           timeline,
           setTimeline,
+          cookiesEnabled,
+          setCookiesEnabled,
         }}
       >
+        <Firebase />
         <div className="flex flex-col bg-gray-100 items-center w-full h-full fixed overflow-y-auto">
           <Suspense fallback={renderLoader()}>
             <Switch>

@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { IAttack, IGroup } from '../../types';
 
 const SelectAttacks = () => {
-  const { timeline, setTimeline } = useContext(AppContext);
+  const { timeline, setTimeline, cookiesEnabled, setCookiesEnabled } = useContext(AppContext);
   const history = useHistory();
 
   const toggle = (id: number) => {
@@ -41,7 +41,7 @@ const SelectAttacks = () => {
 
   return (
     <div className="max-w-7xl w-full">
-      <div className="flex p-3 flex-wrap">
+      <div className="flex px-3 flex-wrap mt-3">
         {groups.map((group: IGroup) => (
           <button
             key={group.title}
@@ -53,7 +53,17 @@ const SelectAttacks = () => {
         ))}
       </div>
 
-      <div className="flex flex-col py-3 bg-white rounded-lg mx-3 shadow px-3 font-medium text-lg items-center justify-between">
+      {!cookiesEnabled ? <div className="flex flex-col py-3 bg-white rounded-lg mx-3 shadow px-3 font-medium text-lg items-center justify-between">
+        <div className="w-full text-left ml-3">Help us improve this app by enabling cookies and analytics.</div>
+        <button
+          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium w-full mt-3 bg-blue-500 hover:bg-blue-600`}
+          onClick={() => setCookiesEnabled(true)}
+        >
+          Allow Cookies
+        </button>
+      </div> : null}
+
+      <div className="flex flex-col py-3 bg-white rounded-lg mx-3 shadow px-3 font-medium text-lg items-center justify-between mt-3">
         <div>
           {timeline.length} out of {details.length} selected {timeline.length > 0 && activeGroup().title !== "Clear" ? `(${activeGroup().title})` : null}
         </div>
