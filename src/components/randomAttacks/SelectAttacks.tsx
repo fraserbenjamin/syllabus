@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { IAttack, IGroup } from '../../types';
 
 const SelectAttacks = () => {
-  const { setTimeline, timeline } = useContext(AppContext);
+  const { setTimeline } = useContext(AppContext);
   const [selected, setSelected] = useState<number[]>([]);
   const history = useHistory();
 
@@ -32,14 +32,13 @@ const SelectAttacks = () => {
 
     return {
       title: "Clear",
-      baseColour: "blue-500",
-      hoverColour: "blue-600",
-      textColour: "white",
+      baseColour: "bg-blue-500",
+      hoverColour: "bg-blue-600",
+      textColour: "text-white",
+      borderColour: "border-blue-500",
       attacks: [],
     }
   }, [selected]);
-
-
 
   return (
     <div className="max-w-7xl w-full">
@@ -47,7 +46,7 @@ const SelectAttacks = () => {
         {groups.map((group: IGroup) => (
           <button
             key={group.title}
-            className={`py-3 px-6 text-${group.textColour} rounded-lg transition-colors duration-200 shadow font-medium flex-shrink-0 bg-${group.baseColour} hover:bg-${group.hoverColour} mr-2 mb-2 flex-grow`}
+            className={`py-3 px-6 ${group.textColour} rounded-lg transition-colors duration-200 shadow font-medium flex-shrink-0 ${group.baseColour} hover:${group.hoverColour} mr-2 mb-2 flex-grow`}
             onClick={() => setSelected(group.attacks)}
           >
             {group.title}
@@ -61,9 +60,9 @@ const SelectAttacks = () => {
         </div>
 
         {selected.length > 0 ? <button
-          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium w-full mt-3 bg-${activeGroup().baseColour}`}
+          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium w-full mt-3 ${activeGroup().baseColour}`}
           onClick={() => {
-            setTimeline([...timeline, ...shuffleArray(selected)]);
+            setTimeline(shuffleArray(selected));
             history.push("/play")
           }}
         >

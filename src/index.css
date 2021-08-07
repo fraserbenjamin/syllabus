@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .scroll-snap-y {
+    scroll-snap-type: y mandatory;
+  }
+
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+
+  .align-snap-center {
+    scroll-snap-align: center;
+  }
+}

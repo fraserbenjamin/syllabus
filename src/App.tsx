@@ -11,7 +11,6 @@ import AppContext from './context/appContext';
 
 const App = () => {
   const [timeline, setTimeline] = useState<number[]>([]);
-  const [pointer, setPointer] = useState<number>(0);
 
   return (
     <Router>
@@ -19,8 +18,6 @@ const App = () => {
         value={{
           timeline,
           setTimeline,
-          pointer,
-          setPointer,
         }}
       >
         <div className="bg-purple-600 hover:bg-purple-700 hidden"></div>

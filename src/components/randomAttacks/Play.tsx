@@ -1,73 +1,75 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import AppContext from '../../context/appContext';
 import AttackSquare from './AttackSquare';
 import ViewAttack from './ViewAttack';
+import groups from "../../assets/randomAttacks/groups.json";
+import { numericArraysEqual } from '../../common/util';
+import { IGroup } from '../../types';
 
 const Play = () => {
   const history = useHistory();
-  const { timeline, setTimeline, pointer, setPointer } = useContext(AppContext);
-  const [historyVisible, setHistoryVisible] = useState<boolean>(false);
+  const { timeline, setTimeline } = useContext(AppContext);
+  const [pointer, setPointer] = useState<number>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const current = timeline.length > pointer ? timeline[pointer] : null;
 
-  if (!current) return (
-    <div className="p-3 flex flex-col w-full h-full space-y-3">
-      <div className="bg-white rounded-lg shadow w-full p-3">
-        <button
-          className="py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium bg-blue-500 hover:bg-blue-600"
-          onClick={() => setPointer(pointer - 1)}
-        >
-          Previous
-        </button>
-      </div>
+  const filteredTimeline = timeline.slice(0, pointer + 1);
 
-      <div className="bg-white rounded-lg shadow w-full p-3 text-center">
-        <div className="font-medium text-2xl">End of Random Attacks</div>
+  const activeGroup = useCallback((): IGroup => {
+    for (let i = 0; i < groups.length; i++) {
+      if (numericArraysEqual(timeline, groups[i].attacks)) {
+        return groups[i];
+      }
+    }
 
-        <button
-          className="py-2 px-6 text-gray-900 rounded-lg font-medium transition-colors duration-200 hover:bg-gray-200 mt-5"
-          onClick={() => history.push("/")}
-        >
-          Back to Start
-        </button>
-      </div>
-    </div>
-  );
+    return {
+      title: "Clear",
+      baseColour: "bg-blue-500",
+      hoverColour: "bg-blue-600",
+      textColour: "text-white",
+      borderColour: "border-blue-500",
+      attacks: [],
+    }
+  }, [timeline]);
+
+  const nextItem = () => {
+    setPointer((prev: number) => prev + 1);
+
+    setTimeout(() => {
+      if(scrollRef?.current){
+        scrollRef.current.scrollTo({
+          top: scrollRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }, 50)
+  }
 
   return (
     <div className="p-3 flex flex-col w-full h-full space-y-3">
-      {historyVisible ? (
-        <div className="flex space-x-3 w-full overflow-x-auto flex-shrink-0 p-1">
-          {timeline.slice(0, pointer).map((item, i) => (
-            <AttackSquare key={i} attack={item} />
-          ))}
-        </div>
-      ) : null}
-
-      <div className="bg-white rounded-lg shadow w-full p-3 space-x-3">
-        {pointer > 0 ? <button
-          className="py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium bg-blue-500 hover:bg-blue-600"
-          onClick={() => setPointer(pointer - 1)}
-        >
-          Previous
-        </button> : null}
-        <button
-          className="py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium bg-blue-500 hover:bg-blue-600"
-          onClick={() => setPointer(pointer + 1)}
-        >
-          Next
-        </button>
-        <button
-          className="py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium bg-blue-500 hover:bg-blue-600"
-          onClick={() => setHistoryVisible((prev: boolean) => !prev)}
-        >
-          History
-        </button>
+      <div ref={scrollRef} className="scroll-snap-y flex flex-col overflow-y-auto flex-grow">
+        {filteredTimeline.map((item: number, i: number) => (
+          <ViewAttack key={i} attack={item} />
+        ))}
       </div>
 
-      {current ? <ViewAttack attack={current} /> : null}
+      <div className="flex w-full space-x-3">
+        <button
+          className="py-3 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium bg-gray-500 hover:bg-gray-600"
+          onClick={() => history.push("/")}
+        >
+          Home
+        </button>
+        <button
+          className={`py-3 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium ${activeGroup().baseColour} hover:${activeGroup().hoverColour} flex-grow`}
+          onClick={nextItem}
+        >
+          New Attack
+        </button>
+      </div>
     </div>
   )
 }
