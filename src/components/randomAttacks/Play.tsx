@@ -2,7 +2,6 @@ import React, { useContext, useState, useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import AppContext from '../../context/appContext';
-import AttackSquare from './AttackSquare';
 import ViewAttack from './ViewAttack';
 import groups from "../../assets/randomAttacks/groups.json";
 import { numericArraysEqual } from '../../common/util';
@@ -10,11 +9,9 @@ import { IGroup } from '../../types';
 
 const Play = () => {
   const history = useHistory();
-  const { timeline, setTimeline } = useContext(AppContext);
+  const { timeline } = useContext(AppContext);
   const [pointer, setPointer] = useState<number>(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const current = timeline.length > pointer ? timeline[pointer] : null;
 
   const filteredTimeline = timeline.slice(0, pointer + 1);
 
