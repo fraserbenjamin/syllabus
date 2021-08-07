@@ -45,7 +45,7 @@ const SelectAttacks = () => {
         {groups.map((group: IGroup) => (
           <button
             key={group.title}
-            className={`py-3 px-6 ${group.textColour} rounded-lg transition-colors duration-200 shadow font-medium flex-shrink-0 ${group.baseColour} hover:${group.hoverColour} mr-2 mb-2 flex-grow`}
+            className={`py-3 px-6 ${group.textColour} rounded-lg transition-colors duration-200 shadow font-medium flex-shrink-0 ${group.baseColour} ${group.hoverColour} mr-2 mb-2 flex-grow`}
             onClick={() => setTimeline(group.attacks)}
           >
             {group.title}
