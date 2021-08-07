@@ -26,7 +26,7 @@ const AttackCard: React.FC<IProps> = ({ attack, active, setActive, activeGroup }
         </>
       ) : null}
 
-      <img className="h-48 my-5 self-center" src={imgSrc} alt={attack.title} />
+      <img className="h-48 w-full my-5 self-center" src={imgSrc} alt={attack.title} />
       <div className="font-medium text-center p-3 self-center text-gray-900 flex-grow">{attack.id}. {attack.title}</div>
     </button>
   )
