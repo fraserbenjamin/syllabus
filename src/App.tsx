@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { useLocalStorage } from "react-use";
 import Firebase from './components/Firebase';
 
 import AppContext from './context/appContext';
@@ -15,7 +16,7 @@ const renderLoader = () => null;
 
 const App = () => {
   const [timeline, setTimeline] = useState<number[]>([]);
-  const [cookiesEnabled, setCookiesEnabled] = useState<boolean>(false);
+  const [cookiesEnabled, setCookiesEnabled] = useLocalStorage<boolean>("cookiesEnabled", false);
 
   return (
     <Router>
@@ -23,7 +24,7 @@ const App = () => {
         value={{
           timeline,
           setTimeline,
-          cookiesEnabled,
+          cookiesEnabled : cookiesEnabled ? cookiesEnabled : false,
           setCookiesEnabled,
         }}
       >
