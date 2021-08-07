@@ -1,4 +1,4 @@
-[
+export const groups = [
   {
     "title": "Clear",
     "baseColour": "bg-white",

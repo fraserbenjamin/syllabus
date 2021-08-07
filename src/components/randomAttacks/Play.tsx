@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import AppContext from '../../context/appContext';
 import ViewAttack from './ViewAttack';
-import groups from "../../assets/randomAttacks/groups.json";
+import { groups } from "../../assets/randomAttacks/groups";
 import { numericArraysEqual } from '../../common/util';
 import { IGroup } from '../../types';
 
@@ -36,7 +36,7 @@ const Play = () => {
     setPointer((prev: number) => prev + 1);
 
     setTimeout(() => {
-      if(scrollRef?.current){
+      if (scrollRef?.current) {
         scrollRef.current.scrollTo({
           top: scrollRef.current.scrollHeight,
           behavior: "smooth",

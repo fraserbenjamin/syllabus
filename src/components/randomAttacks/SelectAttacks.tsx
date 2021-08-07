@@ -3,7 +3,7 @@ import React, { useCallback, useContext } from 'react';
 import { numericArraysEqual, shuffleArray } from "../../common/util";
 import AttackCard from './AttackCard';
 import details from "../../assets/randomAttacks/details.json";
-import groups from "../../assets/randomAttacks/groups.json";
+import { groups } from "../../assets/randomAttacks/groups";
 import AppContext from '../../context/appContext';
 import { useHistory } from 'react-router-dom';
 import { IAttack, IGroup } from '../../types';
