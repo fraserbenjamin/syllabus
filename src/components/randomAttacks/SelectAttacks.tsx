@@ -56,7 +56,7 @@ const SelectAttacks = () => {
       {!cookiesEnabled ? <div className="flex flex-col py-3 bg-white rounded-lg mx-3 shadow px-3 font-medium text-lg items-center justify-between">
         <div className="w-full text-left ml-3">Help us improve this app by enabling cookies and analytics.</div>
         <button
-          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium w-full mt-3 bg-blue-500 hover:bg-blue-600`}
+          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium w-full mt-3 bg-blue-600 hover:bg-blue-700`}
           onClick={() => setCookiesEnabled(true)}
         >
           Allow Cookies
