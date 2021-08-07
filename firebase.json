@@ -28,11 +28,21 @@
       },
       {
         "source":
-          "**/*.@(jpg|jpeg|gif|png|svg|webp|js|jsx|ts|tsx|css|eot|otf|ttf|ttc|woff|woff2|font.css)",
+          "**/*.@(js|jsx|ts|tsx|css|eot|otf|ttf|ttc|woff|woff2|font.css)",
         "headers": [
           {
             "key": "Cache-Control",
             "value": "max-age=604800"
+          }
+        ]
+      },
+      {
+        "source":
+          "**/*.@(jpg|jpeg|gif|png|svg|webp)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
           }
         ]
       }
