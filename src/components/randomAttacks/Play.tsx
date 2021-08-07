@@ -61,10 +61,11 @@ const Play = () => {
           Home
         </button>
         <button
-          className={`py-3 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium ${activeGroup().baseColour} hover:${activeGroup().hoverColour} flex-grow`}
+          disabled={pointer + 1 >= timeline.length}
+          className={`py-3 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium ${activeGroup().baseColour} hover:${activeGroup().hoverColour} flex-grow disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-default`}
           onClick={nextItem}
         >
-          New Attack
+          New Attack {pointer + 1} / {timeline.length}
         </button>
       </div>
     </div>
