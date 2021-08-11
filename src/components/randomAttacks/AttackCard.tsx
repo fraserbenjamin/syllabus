@@ -14,7 +14,7 @@ const AttackCard: React.FC<IProps> = ({ attack, active, setActive, activeGroup }
 
   return (
     <button
-      className={`rounded-lg m-3 flex flex-col justify-between bg-white hover:bg-gray-50 transition-colors duration-200 relative overflow-hidden cursor-pointer border-2 ${active ? activeGroup.borderColour : "border-gray-200"}`}
+      className={`rounded-lg m-3 flex flex-col justify-between bg-white hover:bg-gray-50 transition-colors duration-200 relative overflow-hidden cursor-pointer ${active ? `border-2 ${activeGroup.borderColour}` : "border border-gray-200"}`}
       onClick={() => setActive(!active)}
     >
       {active ? (
