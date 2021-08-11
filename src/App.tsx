@@ -29,7 +29,7 @@ const App = () => {
         }}
       >
         <Firebase />
-        <div className="flex flex-col bg-gray-100 items-center w-full h-full fixed overflow-y-auto">
+        <div className="flex flex-col items-center w-full h-full fixed overflow-y-auto">
           <Suspense fallback={renderLoader()}>
             <Switch>
               <Route exact path="/">

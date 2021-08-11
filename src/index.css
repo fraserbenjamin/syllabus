@@ -25,3 +25,7 @@
       scrollbar-width: none;  /* Firefox */
   }
 }
+
+body {
+  background-color: #F3F4F6;
+}
