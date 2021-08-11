@@ -6,12 +6,15 @@ import ViewAttack from './ViewAttack';
 import { groups } from "../../assets/randomAttacks/groups";
 import { numericArraysEqual } from '../../common/util';
 import { IGroup } from '../../types';
+import { FaHome } from "react-icons/fa";
 
 const Play = () => {
   const history = useHistory();
   const { timeline } = useContext(AppContext);
   const [pointer, setPointer] = useState<number>(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  if(timeline.length === 0) history.push("/");
 
   const filteredTimeline = timeline.slice(0, pointer + 1);
 
@@ -46,26 +49,26 @@ const Play = () => {
   }
 
   return (
-    <div className="p-3 flex flex-col w-full h-full space-y-3">
-      <div ref={scrollRef} className="scroll-snap-y flex flex-col overflow-y-auto flex-grow">
+    <div className="flex flex-col w-full h-full overflow-visible">
+      <div ref={scrollRef} className="scroll-snap-y flex flex-col overflow-y-auto flex-grow hide-scrollbar">
         {filteredTimeline.map((item: number, i: number) => (
-          <ViewAttack key={i} attack={item} />
+          <ViewAttack key={i} attack={item} index={i + 1} total={timeline.length} />
         ))}
       </div>
 
-      <div className="flex w-full space-x-3">
+      <div className="flex w-full space-x-3 p-3">
         <button
-          className="py-3 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium bg-gray-500 hover:bg-gray-600"
+          className="py-3 px-4 rounded-lg transition-colors duration-200 font-medium bg-gray-500 hover:bg-gray-600"
           onClick={() => history.push("/")}
         >
-          Home
+          <FaHome color="white" size={24}/>
         </button>
         <button
           disabled={pointer + 1 >= timeline.length}
-          className={`py-3 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium ${activeGroup().baseColour} hover:${activeGroup().hoverColour} flex-grow disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-default`}
+          className={`py-3 px-6 text-white rounded-lg transition-colors duration-200 font-medium ${activeGroup().baseColour} hover:${activeGroup().hoverColour} flex-grow disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-default`}
           onClick={nextItem}
         >
-          New Attack {pointer + 1} / {timeline.length}
+          New Attack
         </button>
       </div>
     </div>

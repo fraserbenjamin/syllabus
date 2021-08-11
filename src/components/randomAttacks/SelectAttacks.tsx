@@ -32,7 +32,7 @@ const SelectAttacks = () => {
     return {
       title: "Clear",
       baseColour: "bg-blue-500",
-      hoverColour: "bg-blue-600",
+      hoverColour: "hover:bg-blue-600",
       textColour: "text-white",
       borderColour: "border-blue-500",
       attacks: [],
@@ -45,7 +45,7 @@ const SelectAttacks = () => {
         {groups.map((group: IGroup) => (
           <button
             key={group.title}
-            className={`py-3 px-6 ${group.textColour} rounded-lg transition-colors duration-200 shadow font-medium flex-shrink-0 ${group.baseColour} ${group.hoverColour} mr-2 mb-2 flex-grow`}
+            className={`py-3 px-6 ${group.textColour} rounded-lg transition-colors duration-200 font-medium flex-shrink-0 ${group.baseColour} ${group.hoverColour} mr-2 mb-2 flex-1`}
             onClick={() => setTimeline(group.attacks)}
           >
             {group.title}
@@ -53,23 +53,23 @@ const SelectAttacks = () => {
         ))}
       </div>
 
-      {!cookiesEnabled ? <div className="flex flex-col py-3 bg-white rounded-lg mx-3 shadow px-3 font-medium text-lg items-center justify-between">
+      {!cookiesEnabled ? <div className="flex flex-col py-3 bg-white rounded-lg mx-3 border border-gray-200 px-3 font-medium text-lg items-center justify-between">
         <div className="w-full text-left ml-3">Help us improve this app by enabling cookies and analytics.</div>
         <button
-          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium w-full mt-3 bg-blue-600 hover:bg-blue-700`}
+          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 font-medium w-full mt-3 bg-blue-500 hover:bg-blue-600`}
           onClick={() => setCookiesEnabled(true)}
         >
           Allow Cookies
         </button>
       </div> : null}
 
-      <div className="flex flex-col py-3 bg-white rounded-lg mx-3 shadow px-3 font-medium text-lg items-center justify-between mt-3">
+      <div className="flex flex-col py-3 bg-white rounded-lg mx-3 border border-gray-200 px-3 font-medium text-lg items-center justify-between mt-3">
         <div>
           {timeline.length} out of {details.length} selected {timeline.length > 0 && activeGroup().title !== "Clear" ? `(${activeGroup().title})` : null}
         </div>
 
         {timeline.length > 0 ? <button
-          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 shadow font-medium w-full mt-3 ${activeGroup().baseColour}`}
+          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 font-medium w-full mt-3 ${activeGroup().baseColour}  ${activeGroup().hoverColour}`}
           onClick={() => {
             setTimeline(shuffleArray(timeline));
             history.push("/play")

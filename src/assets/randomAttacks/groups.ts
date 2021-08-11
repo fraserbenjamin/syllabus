@@ -1,17 +1,17 @@
 export const groups = [
   {
     "title": "Clear",
-    "baseColour": "bg-white",
-    "hoverColour": "hover:bg-gray-100",
-    "textColour": "text-gray-900",
+    "baseColour": "bg-red-500",
+    "hoverColour": "hover:bg-red-600",
+    "textColour": "text-white",
     "borderColour": "border-white",
     "attacks": []
   },
   {
     "title": "Green Belt",
-    "baseColour": "bg-green-700",
-    "hoverColour": "hover:bg-green-800",
-    "borderColour": "border-green-700",
+    "baseColour": "bg-green-600",
+    "hoverColour": "hover:bg-green-700",
+    "borderColour": "border-green-600",
     "textColour": "text-white",
     "attacks": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   },
