@@ -59,11 +59,15 @@ const Play = () => {
               <button
                 className="py-2 px-4 rounded-lg transition-colors duration-200 font-medium text-gray-700 hover:bg-gray-100"
                 onClick={() => setModal(false)}
-              >Cancel</button>
+              >
+                Cancel
+              </button>
               <button
                 className="py-2 px-4 rounded-lg transition-colors duration-200 font-medium text-white bg-red-500 hover:bg-red-600"
                 onClick={() => history.push("/")}
-              >Exit</button>
+              >
+                Exit
+              </button>
             </div>
           </div>
         </div>
