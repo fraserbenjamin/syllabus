@@ -41,11 +41,11 @@ const SelectAttacks = () => {
 
   return (
     <div className="max-w-7xl w-full">
-      <div className="flex px-3 flex-wrap mt-3">
+      <div className="flex px-2 flex-wrap mt-3">
         {groups.map((group: IGroup) => (
           <button
             key={group.title}
-            className={`py-3 px-6 ${group.textColour} rounded-lg transition-colors duration-200 font-medium flex-shrink-0 ${group.baseColour} ${group.hoverColour} mr-2 mb-2 flex-1`}
+            className={`py-3 px-6 ${group.textColour} rounded-lg transition-colors duration-200 font-medium flex-shrink-0 ${group.baseColour} ${group.hoverColour} m-1 flex-1`}
             onClick={() => setTimeline(group.attacks)}
           >
             {group.title}
@@ -53,15 +53,17 @@ const SelectAttacks = () => {
         ))}
       </div>
 
-      {!cookiesEnabled ? <div className="flex flex-col py-3 bg-white rounded-lg mx-3 border border-gray-200 px-3 font-medium text-lg items-center justify-between">
-        <div className="w-full text-left ml-3">Help us improve this app by enabling cookies and analytics.</div>
-        <button
-          className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 font-medium w-full mt-3 bg-blue-500 hover:bg-blue-600`}
-          onClick={() => setCookiesEnabled(true)}
-        >
-          Allow Cookies
-        </button>
-      </div> : null}
+      {!cookiesEnabled ? (
+        <div className="flex flex-col py-3 bg-white rounded-lg mx-3 border border-gray-200 px-3 font-medium text-lg items-center justify-between mt-2">
+          <div className="w-full text-left ml-3">Help us improve this app by enabling cookies and analytics.</div>
+          <button
+            className={`py-2 px-6 text-white rounded-lg transition-colors duration-200 font-medium w-full mt-3 bg-blue-500 hover:bg-blue-600`}
+            onClick={() => setCookiesEnabled(true)}
+          >
+            Allow Cookies
+          </button>
+        </div>
+      ) : null}
 
       <div className="flex flex-col py-3 bg-white rounded-lg mx-3 border border-gray-200 px-3 font-medium text-lg items-center justify-between mt-3">
         <div>
